@@ -1,5 +1,7 @@
 :root {
   --primary-color: #3498db;
+  --primary-font: 'Lustria', serif;
+  --secondary-font: 'Lato', serif;
 }
 
 /* Layouts */
@@ -34,7 +36,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 25%;
+  height: 38%;
   margin: auto;
   padding: 0 2rem;
 }
@@ -42,7 +44,7 @@
 .author-area {
   display: flex;
   justify-content: space-between;
-  padding: 3.25rem 3rem 0;
+  padding: 2.75rem 3rem 0;
 }
 
 .refresh {
@@ -51,15 +53,29 @@
 
 /* States */
 
+.twitter:hover,
+.refresh:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 /* Styling */
 
+body {
+  letter-spacing: 0.4px;
+  background-color: #eaf1f3;
+}
+
 .content-container {
-  border: 1px solid var(--primary-color);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: rgba(23,43,99,0.26) 0 7px 42px;
 }
 
 .quote-area {
-  border-bottom: 0.5px solid var(--primary-color);
+  border-bottom: 1px solid rgba(236, 240, 241, 1.0);
+  /* box-shadow: rgba(23,43,99,0.26) 0 1px 1px; */
 }
 
 .heading,
@@ -69,6 +85,36 @@
 }
 
 .twitter,
+.refresh,
+.author-text {
+  opacity: 0.7;
+}
+
+.twitter,
 .refresh {
   stroke: var(--primary-color);
+  transition:
+    transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.02s,
+    opacity 0.2s ease-in 0.02s;
+  cursor: pointer;
+}
+
+.heading {
+  font-family: var(--primary-font);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.quote-text,
+.author-text {
+  font-family: var(--secondary-font);
+}
+
+.author-text {
+  font-size: 1.2rem;
+}
+
+.quote-text {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
