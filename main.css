@@ -1,19 +1,22 @@
+:root {
+  --primary-color: #3498db;
+}
+
 /* Layouts */
 
 .master-container {
-  margin-top: 4rem;
+  margin-top: 3.5rem;
 }
 
 .heading {
   text-align: center;
+  margin-bottom: -1rem;
 }
 
 .content-container {
   width: 45%;
-  height: 20rem;
-  margin: 0 auto;
-  margin-top: 4rem;
-  border: 2px solid red;
+  height: 22rem;
+  margin: 4.5rem auto 0;
   display: flex;
   flex-direction: column;
 }
@@ -21,8 +24,7 @@
 .quote-area {
   height: 65%;
   text-align: center;
-  border: 2px dashed orange;
-  position: relative
+  position: relative;
 }
 
 .quote-text {
@@ -32,24 +34,41 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 30%;
+  height: 25%;
   margin: auto;
+  padding: 0 2rem;
 }
 
 .author-area {
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 3.25rem 3rem 0;
 }
 
 .refresh {
-  margin-left: 1rem;
+  margin-left: 1.5rem;
 }
 
 /* States */
 
 /* Styling */
 
+.content-container {
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+}
+
 .quote-area {
-  border-bottom: 1px solid blue;
+  border-bottom: 0.5px solid var(--primary-color);
+}
+
+.heading,
+.quote-text,
+.author-text {
+  color: var(--primary-color);
+}
+
+.twitter,
+.refresh {
+  stroke: var(--primary-color);
 }
