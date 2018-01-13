@@ -1,0 +1,55 @@
+/* Layouts */
+
+.master-container {
+  margin-top: 4rem;
+}
+
+.heading {
+  text-align: center;
+}
+
+.content-container {
+  width: 45%;
+  height: 20rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-area {
+  height: 65%;
+  text-align: center;
+  border: 2px dashed orange;
+  position: relative
+}
+
+.quote-text {
+  /* Vertically align */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  margin: auto;
+}
+
+.author-area {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.refresh {
+  margin-left: 1rem;
+}
+
+/* States */
+
+/* Styling */
+
+.quote-area {
+  border-bottom: 1px solid blue;
+}
