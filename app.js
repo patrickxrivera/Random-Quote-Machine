@@ -1,15 +1,6 @@
-const colors = {
-  'Turqoise': '#1abc9c',
-  'Emerald': '#2ecc71',
-  'Peter River': '#3498db',
-  'Amethyst': '#9b59b6',
-  'Green Sea': '#16a085',
-  'Nephritis': '#27ae60',
-  'Belize Hole': '#2980b9'
-}
-
 const refreshBtn = document.querySelector('.refresh');
 const twitterBtn = document.querySelector('.twitter');
+let currentColor;
 
 async function handleQuoteRefresh() {
   const data = await getData();
@@ -39,10 +30,27 @@ function isTooLong(tweet) {
 }
 
 function setNewColor() {
+  const colors = {
+    'Nephritis': '#27ae60',
+    'Belize Hole': '#2980b9',
+    'Wisteria': '#8e44ad',
+    'Carrot': '#e67e22',
+    'Alizarian': '#e74c3c',
+    'Pomegranate': '#c0392b',
+    'Pumpkin': '#d35400'
+  }
   const max = Object.keys(colors).length - 1;
   const min = 0;
   const randomNum = Math.floor(Math.random() * (max - min) + min)
   const newColor = colors[Object.keys(colors)[randomNum]];
+
+  if (currentColor === newColor) {
+    return setNewColor();
+  }
+  else {
+    currentColor = newColor;
+  }
+
   document.documentElement.style.setProperty('--primary-color', newColor)
 }
 

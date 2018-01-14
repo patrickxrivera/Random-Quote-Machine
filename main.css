@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #3498db;
+  --primary-color: #fff;
   --primary-font: 'Lustria', serif;
   --secondary-font: 'Lato', serif;
 }
@@ -67,15 +67,14 @@ body {
 }
 
 .content-container {
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1.5px solid var(--primary-color);
   border-radius: 0.5rem;
   background-color: #fff;
   box-shadow: rgba(23,43,99,0.26) 0 7px 42px;
 }
 
 .quote-area {
-  border-bottom: 1px solid rgba(236, 240, 241, 1.0);
-  /* box-shadow: rgba(23,43,99,0.26) 0 1px 1px; */
+  border-bottom: .02px solid var(--primary-color);
 }
 
 .heading,
@@ -97,6 +96,10 @@ body {
     transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.02s,
     opacity 0.2s ease-in 0.02s;
   cursor: pointer;
+}
+
+.twitter-link {
+  text-decoration: none;
 }
 
 .heading {
