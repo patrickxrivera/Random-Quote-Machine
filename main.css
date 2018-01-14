@@ -59,6 +59,37 @@
   transform: scale(1.1);
 }
 
+.quote-fade-in-animation {
+  animation: quoteFadeInAnimation 0.7s ease-in;
+}
+
+@keyframes quoteFadeInAnimation {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  };
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.author-area-fade-in-animation {
+  animation: authorAreaFadeInAnimation 1.6s ease-in;
+  opacity: 0.8;
+}
+
+@keyframes authorAreaFadeInAnimation {
+  0% {
+    opacity: 0;
+  };
+
+  100% {
+    opacity: 0.8;
+  }
+}
+
 /* Styling */
 
 body {
@@ -81,12 +112,6 @@ body {
 .quote-text,
 .author-text {
   color: var(--primary-color);
-}
-
-.twitter,
-.refresh,
-.author-text {
-  opacity: 0.7;
 }
 
 .twitter,

@@ -14,8 +14,8 @@ async function handleQuoteRefresh() {
 
   setNewColor();
   createTweetUrl(tweet);
-  renderQuoteHTML(quote)
-  renderAuthorHTML(author)
+  renderQuoteHTML(quote);
+  renderAuthorHTML(author);
 };
 
 async function getData() {
@@ -60,7 +60,10 @@ function createTweetUrl(tweet) {
 function renderQuoteHTML(quote) {
   const quoteEl = document.querySelector('.quote-text');
   quoteEl.textContent = `"${quote}"`;
-  quoteEl.classList.add('quote-animation');
+  quoteEl.classList.add('quote-fade-in-animation');
+  quoteEl.addEventListener('animationend', () => {
+    quoteEl.classList.remove('quote-fade-in-animation');
+  })
 }
 
 function renderAuthorHTML(author) {
@@ -71,7 +74,10 @@ function renderAuthorHTML(author) {
 
 function renderAuthorAreaAnimation() {
   const authorArea = document.querySelector('.author-area');
-  authorArea.classList.add('author-area-animation');
+  authorArea.classList.add('author-area-fade-in-animation');
+  authorArea.addEventListener('animationend', () => {
+    authorArea.classList.remove('author-area-fade-in-animation');
+  })
 }
 
 refreshBtn.addEventListener('click', handleQuoteRefresh);
