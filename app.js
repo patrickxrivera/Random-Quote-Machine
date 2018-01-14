@@ -15,6 +15,47 @@ async function getData() {
   return data;
 }
 
+function renderHTML(quote, author) {
+  const tweet = `"${quote}" - ${author}`;
+
+  if (isTooLong(tweet)) {
+    return handleQuoteRefresh();
+  }
+
+  renderNewColor();
+  renderQuoteHTML(quote);
+  renderAuthorHTML(author);
+  setTweetUrl(tweet)
+}
+
+function renderNewColor() {
+  let newColor = getNewColor();
+
+  if (currentColor === newColor) {
+    return renderNewColor();
+  }
+
+  document.documentElement.style.setProperty('--primary-color', newColor);
+  currentColor = newColor;
+}
+
+function getNewColor() {
+  const colors = {
+    'Nephritis': '#27ae60',
+    'Belize Hole': '#2980b9',
+    'Wisteria': '#8e44ad',
+    'Carrot': '#e67e22',
+    'Alizarian': '#e74c3c',
+    'Pomegranate': '#c0392b',
+    'Pumpkin': '#d35400'
+  }
+  const min = 0;
+  const max = Object.keys(colors).length - 1;
+  const randomNum = Math.floor(Math.random() * (max - min) + min)
+  let newColor = colors[Object.keys(colors)[randomNum]];
+  return newColor;
+}
+
 function renderQuoteHTML(quote) {
   const quoteEl = document.querySelector('.quote-text');
   quoteEl.textContent = `"${quote}"`;
@@ -40,43 +81,6 @@ function renderAuthorAreaAnimation() {
   authorArea.addEventListener('animationend', () => {
     authorArea.classList.remove('author-area-fade-in-animation');
   })
-}
-
-function renderNewColor() {
-  const colors = {
-    'Nephritis': '#27ae60',
-    'Belize Hole': '#2980b9',
-    'Wisteria': '#8e44ad',
-    'Carrot': '#e67e22',
-    'Alizarian': '#e74c3c',
-    'Pomegranate': '#c0392b',
-    'Pumpkin': '#d35400'
-  }
-  const min = 0;
-  const max = Object.keys(colors).length - 1;
-  const randomNum = Math.floor(Math.random() * (max - min) + min)
-  const newColor = colors[Object.keys(colors)[randomNum]];
-
-  if (currentColor === newColor) {
-    return renderNewColor();
-  }
-
-  currentColor = newColor;
-  document.documentElement.style.setProperty('--primary-color', newColor)
-}
-
-function renderHTML(quote, author) {
-  const tweet = `"${quote}" - ${author}`;
-
-  if (isTooLong(tweet)) {
-    return handleQuoteRefresh();
-  } else {
-    renderNewColor();
-    renderQuoteHTML(quote);
-    renderAuthorHTML(author);
-  }
-
-  setTweetUrl(tweet)
 }
 
 function isTooLong(tweet) {
