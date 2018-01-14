@@ -4,18 +4,8 @@ let currentColor;
 
 async function handleQuoteRefresh() {
   const data = await getData();
-  const quote = data.quote;
-  const author = data.author;
-  const tweet = `"${quote}" - ${author}`;
-
-  if (isTooLong(tweet)) {
-    return handleQuoteRefresh();
-  };
-
-  setNewColor();
-  createTweetUrl(tweet);
-  renderQuoteHTML(quote);
-  renderAuthorHTML(author);
+  const {quote, author} = {quote: data.quote, author: data.author};
+  renderHTML(quote, author);
 };
 
 async function getData() {
@@ -25,41 +15,13 @@ async function getData() {
   return data;
 }
 
-function isTooLong(tweet) {
-  return tweet.length > 200;
-}
-
-function setNewColor() {
-  const colors = {
-    'Nephritis': '#27ae60',
-    'Belize Hole': '#2980b9',
-    'Wisteria': '#8e44ad',
-    'Carrot': '#e67e22',
-    'Alizarian': '#e74c3c',
-    'Pomegranate': '#c0392b',
-    'Pumpkin': '#d35400'
-  }
-  const max = Object.keys(colors).length - 1;
-  const min = 0;
-  const randomNum = Math.floor(Math.random() * (max - min) + min)
-  const newColor = colors[Object.keys(colors)[randomNum]];
-
-  if (currentColor === newColor) {
-    return setNewColor();
-  }
-
-  currentColor = newColor;
-  document.documentElement.style.setProperty('--primary-color', newColor)
-}
-
-function createTweetUrl(tweet) {
-  const tweetElement = document.querySelector('.twitter-link');
-  tweetElement.href = `https://twitter.com/intent/tweet?text=${tweet}`;
-}
-
 function renderQuoteHTML(quote) {
   const quoteEl = document.querySelector('.quote-text');
   quoteEl.textContent = `"${quote}"`;
+  renderQuoteAnimation(quoteEl);
+}
+
+function renderQuoteAnimation(quoteEl) {
   quoteEl.classList.add('quote-fade-in-animation');
   quoteEl.addEventListener('animationend', () => {
     quoteEl.classList.remove('quote-fade-in-animation');
@@ -78,6 +40,52 @@ function renderAuthorAreaAnimation() {
   authorArea.addEventListener('animationend', () => {
     authorArea.classList.remove('author-area-fade-in-animation');
   })
+}
+
+function renderNewColor() {
+  const colors = {
+    'Nephritis': '#27ae60',
+    'Belize Hole': '#2980b9',
+    'Wisteria': '#8e44ad',
+    'Carrot': '#e67e22',
+    'Alizarian': '#e74c3c',
+    'Pomegranate': '#c0392b',
+    'Pumpkin': '#d35400'
+  }
+  const min = 0;
+  const max = Object.keys(colors).length - 1;
+  const randomNum = Math.floor(Math.random() * (max - min) + min)
+  const newColor = colors[Object.keys(colors)[randomNum]];
+
+  if (currentColor === newColor) {
+    return renderNewColor();
+  }
+
+  currentColor = newColor;
+  document.documentElement.style.setProperty('--primary-color', newColor)
+}
+
+function renderHTML(quote, author) {
+  const tweet = `"${quote}" - ${author}`;
+
+  if (isTooLong(tweet)) {
+    return handleQuoteRefresh();
+  } else {
+    renderNewColor();
+    renderQuoteHTML(quote);
+    renderAuthorHTML(author);
+  }
+
+  setTweetUrl(tweet)
+}
+
+function isTooLong(tweet) {
+  return tweet.length > 200;
+}
+
+function setTweetUrl(tweet) {
+  const tweetElement = document.querySelector('.twitter-link');
+  tweetElement.href = `https://twitter.com/intent/tweet?text=${tweet}`;
 }
 
 refreshBtn.addEventListener('click', handleQuoteRefresh);
