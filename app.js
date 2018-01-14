@@ -47,10 +47,8 @@ function setNewColor() {
   if (currentColor === newColor) {
     return setNewColor();
   }
-  else {
-    currentColor = newColor;
-  }
 
+  currentColor = newColor;
   document.documentElement.style.setProperty('--primary-color', newColor)
 }
 
@@ -62,11 +60,18 @@ function createTweetUrl(tweet) {
 function renderQuoteHTML(quote) {
   const quoteEl = document.querySelector('.quote-text');
   quoteEl.textContent = `"${quote}"`;
+  quoteEl.classList.add('quote-animation');
 }
 
 function renderAuthorHTML(author) {
   const authorEl = document.querySelector('.author-text');
   authorEl.textContent = `- ${author}`;
+  renderAuthorAreaAnimation()
+}
+
+function renderAuthorAreaAnimation() {
+  const authorArea = document.querySelector('.author-area');
+  authorArea.classList.add('author-area-animation');
 }
 
 refreshBtn.addEventListener('click', handleQuoteRefresh);
